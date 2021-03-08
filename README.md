@@ -1,0 +1,4 @@
+# Wifi Auto Login
+
+Auto login to public wifi on my campus.
+Not sure if it works fine.
