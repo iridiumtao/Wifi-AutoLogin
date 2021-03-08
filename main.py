@@ -1,5 +1,7 @@
 from selenium import webdriver
 import time
+import socket
+import netifaces
 
 # wifi Auto login
 if __name__ == '__main__':
@@ -7,7 +9,11 @@ if __name__ == '__main__':
     username = open("username", "r").read().replace('\n', '')  # Enter Your Wifi Username
     password = open("password", "r").read().replace('\n', '')  # Enter Your Wifi password
 
-    url = 'http://192.168.20.254:1000/login?'  # Wifi Login URL
+	router_ip = netifaces.gateways()['default'][netifaces.AF_INET][0]
+
+	url = 'http://' + router_ip + ':1000/login?'
+    # url = 'http://192.168.191.254:1000/login?'  # Wifi Login URL
+    # url = 'http://192.168.20.254:1000/login?'  # Wifi Login URL
 
     # for Safari
     driver = webdriver.Safari()
@@ -33,4 +39,5 @@ if __name__ == '__main__':
         driver.find_element_by_xpath('/html/body/form/table[1]/tbody/tr/td/div/table/tbody/tr[2]/td/table/tbody/tr[4]/td/input[2]').click()
 
     print("Login Succeed")
+    driver.close()
 
